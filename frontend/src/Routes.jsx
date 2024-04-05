@@ -1,16 +1,16 @@
 import {Route, Routes} from "react-router-dom"
-import Etusivu from "./Etusivu"
-import Reitinvalinta from "./Reitinvalinta"
-import Ohjeet from "./Ohjeet"
-import Tuki from "./Tuki"
+import Home from "./Home"
+import Maps from "./Maps"
+import Instructions from "./Instructions"
+import Help from "./Help"
 
 function PageRoutes() {
     return (
         <Routes>
-            <Route path="/" element={<Etusivu/>} />
-            <Route path="Reitinvalinta" element={<Reitinvalinta/>} />
-            <Route path="Ohjeet" element={<Ohjeet/>} />
-            <Route path="Tuki" element={<Tuki/>} />
+            <Route path="/" element={<Home/>} />
+            <Route path="suunnittele-reitti" element={<Maps/>} />
+            <Route path="ohjeet" element={<Instructions/>} />
+            <Route path="tuki" element={<Help/>} />
         </Routes>
     )
 }

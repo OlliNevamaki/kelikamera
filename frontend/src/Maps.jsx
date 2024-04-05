@@ -1,4 +1,4 @@
-function Ohjeet() {
+function Maps() {
     return (
         <>
 
@@ -6,4 +6,4 @@ function Ohjeet() {
     )
 }
 
-export default Ohjeet
+export default Maps

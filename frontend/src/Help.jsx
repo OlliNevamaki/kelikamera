@@ -1,4 +1,4 @@
-function Etusivu() {
+function Help() {
     return (
         <>
 
@@ -6,4 +6,4 @@ function Etusivu() {
     )
 }
 
-export default Etusivu
+export default Help

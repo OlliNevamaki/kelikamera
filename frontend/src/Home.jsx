@@ -1,4 +1,4 @@
-function Tuki() {
+function Home() {
     return (
         <>
 
@@ -6,4 +6,4 @@ function Tuki() {
     )
 }
 
-export default Tuki
+export default Home

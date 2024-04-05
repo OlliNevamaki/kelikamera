@@ -8,13 +8,13 @@ const Navigation = () => {
                     <Link to="/">Etusivu</Link>
                 </li>
                 <li>
-                    <Link to="/Reitinvalinta">Reitinvalinta</Link>
+                    <Link to="/suunnittele-reitti">Suunnittele reittisi</Link>
                 </li>
                 <li>
-                    <Link to="/Ohjeet">Ohjeet</Link>
+                    <Link to="/ohjeet">Käyttöohjeet</Link>
                 </li>
                 <li>
-                    <Link to="/Tuki">Tuki</Link>
+                    <Link to="/tuki">Tuki</Link>
                 </li>
             </ul>
         </nav>
