@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <p>Copy Rights 2024</p>
+      <p>Copy Rights 2024 Kelikamera</p>
     </footer>
   );
 }

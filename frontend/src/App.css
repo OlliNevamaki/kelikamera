@@ -17,11 +17,12 @@ li {
 
 h3 {
   text-align: left;
-  margin-left: 50px;
+  margin-top: 50px;
+  margin-left: 150px;
 }
 .Left-align {
   text-align: left;
-  margin-left: 50px;
+  margin-left: 150px;
   margin-bottom: 500px;
 }
 
@@ -58,19 +59,21 @@ nav ul li {
   margin-right: 15px;
 }
 
+.Main-content {
+  padding-bottom: 300px;
+}
+
 footer {
   background-color: #cae9ff;
   color: #1b4965;
   padding: 5px;
   text-align: center;
-  position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
+  right: 0;
   width: 100%;
-}
-
-.Main-content {
-  margin-bottom: 650px; /* Riippuen footerin korkeudesta, aseta sopiva arvo */
+  display: block;
 }
 
 /*

@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 function Instructions() {
   return (
     <div>
@@ -8,6 +9,8 @@ function Instructions() {
         <li>2</li>
         <li>3</li>
       </ol>
+      <br></br>
+      <Footer />
     </div>
   );
 }

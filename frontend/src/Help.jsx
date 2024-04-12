@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 function Help() {
   return (
     <div>
@@ -13,6 +14,8 @@ function Help() {
           Sähköpostiosoite: <b>kelikamera@tuki.fi</b>
         </li>
       </ol>
+      <br></br>
+      <Footer />
     </div>
   );
 }
