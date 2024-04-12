@@ -16,4 +16,4 @@ Sovelluksessa näkyy esim. Nopein reitti, keskeisimmät kelikamerat ja niiden ti
 
 ## Näyttökuvia sovelluksesta
 
-### Ohejlmistotuotannon projekti- kurssi Kevät 2024.
+### Ohjelmistotuotannon projekti- kurssi Kevät 2024.
