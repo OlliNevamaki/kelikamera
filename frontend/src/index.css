@@ -1,11 +1,11 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #f5f5f5;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,9 +13,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1,
+h2,
+h3,
+p {
+  color: #1b4965;
+}
+
+ol,
+li {
+  color: #1b4965;
+}
+
 a {
   font-weight: 500;
-  color: #58f0b0;
+  color: #1b4965;
   text-decoration: inherit;
 }
 a:hover {

@@ -1,8 +1,12 @@
+/* Poppins font integration */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
 #root {
   text-align: center;
 }
 
 body {
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -11,10 +15,36 @@ li {
   list-style-type: none;
 }
 
+h3 {
+  text-align: left;
+  margin-left: 50px;
+}
+.Left-align {
+  text-align: left;
+  margin-left: 50px;
+  margin-bottom: 500px;
+}
+
+.Banner-image {
+  width: 100%;
+  height: auto;
+}
+
 nav {
-  background-color: rgb(21, 21, 21);
+  background-color: #cae9ff;
   margin-bottom: 10px;
-  padding: 20px 20px 20px 20px;
+  padding: 20px;
+  display: column;
+  align-items: center;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 20%;
+  height: auto;
 }
 
 nav ul {
@@ -28,7 +58,26 @@ nav ul li {
   margin-right: 15px;
 }
 
+footer {
+  background-color: #cae9ff;
+  color: #1b4965;
+  padding: 5px;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.Main-content {
+  margin-bottom: 650px; /* Riippuen footerin korkeudesta, aseta sopiva arvo */
+}
+
+/*
+
 nav ul li:hover {
   border-radius: 5px;
   background-color: rgba(60, 60, 60, 0.2);
 }
+
+*/
