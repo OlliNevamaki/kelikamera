@@ -62,7 +62,7 @@ function Maps() {
                         <p style={{color:"black"}}>Kesto: {duration} </p>
                     </div>
                 </div>
-                <GoogleMap zoom={7} center={startPos} mapId={"39f7e81720cbd140"} mapContainerStyle={{ width: "100%", height: "100%" }} onLoad={map => setMap(map)}>
+                <GoogleMap zoom={7} center={startPos} mapId={"39f7e81720cbd140"} mapContainerStyle={{ width: "100%", height: "100%" }} options={{streetViewControl: false, mapTypeControl: false, fullscreenControl:false}} onLoad={map => setMap(map)}>
                     {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
                 </GoogleMap>
             </div>
