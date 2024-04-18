@@ -78,21 +78,25 @@ footer {
 }
 
 .departure-holder {
-  margin-right: 20px;
-  border-radius: 20px;
-  outline: none;
+  margin: 3px;
+  padding: 3px 8px;
+  font-size: 18px;
   border: 1px solid black;
+  border-radius: 6px;
   background: white;
   color: black;
+  outline: none;
 }
 
 .destination-holder {
-  margin-right: 20px;
-  border-radius: 20px;
-  outline: none;
+  margin: 3px;
+  padding: 3px 8px;
+  font-size: 18px;
   border: 1px solid black;
-  background: white;
+  border-radius: 6px;
+  background: rgb(255, 255, 255);
   color: black;
+  outline: none;
 }
 
 .calculateroute-button {
@@ -115,6 +119,10 @@ footer {
   margin: 6px;
 }
 
+.calculateroute-button:hover {
+  background-color: rgba(28, 28, 192, 0.86);
+}
+
 .clearroute-button {
   width: 120px;
   height: 35px;
@@ -133,6 +141,10 @@ footer {
   text-align: center;
   text-decoration: none;
   margin: 6px;
+}
+
+.clearroute-button:hover {
+  background-color: rgb(197, 54, 6);
 }
 
 /*
