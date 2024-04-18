@@ -1,6 +1,6 @@
 "use client";
 import Footer from "./Footer";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
   useJsApiLoader,
   GoogleMap,
@@ -24,6 +24,39 @@ function Maps() {
   const [duration, setDuration] = useState("");
   const origRef = useRef(null);
   const destinationRef = useRef(null);
+
+  const [cameraData, setCameraData] = useState([])
+
+  useEffect(() => {
+    fetchCameraData()
+  }, [])
+
+  async function fetchCameraData() {
+    try {
+      const response = await fetch("https://tie.digitraffic.fi/api/weathercam/v1/stations")
+      if(!response.ok) {
+        throw new Error("Failed to fetch camera data")
+      }
+      const data = await response.json()
+      console.log("API response:", data)
+      if(Array.isArray(data.features)) {
+        const cameraCoordinates = data.features.map(feature => {
+        if(feature.geometry && Array.isArray(feature.geometry.coordinates)) {
+          const lng = feature.geometry.coordinates[0]
+          const lat = feature.geometry.coordinates[1]
+          return {lat, lng}
+        }
+        return null
+        }).filter(coordinate => coordinate !== null)
+        setCameraData(cameraCoordinates)
+      }else {
+        throw new Error("Camera data is not in the expected format")
+      }
+    } catch(error) {
+      console.error("Error while fetching data", error)
+      }
+  }
+
 
   if (!isLoaded) {
     return null;
@@ -129,6 +162,14 @@ function Maps() {
           {directionsResponse && (
             <DirectionsRenderer directions={directionsResponse} />
           )}
+          {cameraData.map((camera, index) => {
+            if(camera && camera.lat && camera.lng) {
+              return <Marker key={index} position={{lat: camera.lat, lng: camera.lng}}></Marker>
+            }else {
+              console.error("Invalid camera data:", camera)
+              return null
+            }
+          })}
         </GoogleMap>
         <Footer />
       </div>
