@@ -16,4 +16,6 @@ Sovelluksessa näkyy esim. Nopein reitti, keskeisimmät kelikamerat ja niiden ti
 
 ## Näyttökuvia sovelluksesta
 
+<img src="./kelikamera-etusivu.png" alt="Etusivu" width="50%" />
+
 ### Ohjelmistotuotannon projekti- kurssi Kevät 2024.
