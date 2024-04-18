@@ -77,6 +77,36 @@ footer {
   margin-top: 500px;
 }
 
+.departure-button {
+  margin-right: 20px;
+  border-radius: 20px;
+  outline: none;
+  border: 1px solid black;
+  background: white;
+  color: black;
+}
+
+.destination-button {
+  margin-right: 20px;
+  border-radius: 20px;
+  outline: none;
+  border: 1px solid black;
+  background: white;
+  color: black;
+}
+
+.calculateroute-button {
+  background: blue;
+  border-radius: 20px;
+  border: 1px solid grey;
+}
+
+.clearroute-button {
+  background: blue;
+  border-radius: 20px;
+  border: 1px solid grey;
+}
+
 /*
 
 nav ul li:hover {
