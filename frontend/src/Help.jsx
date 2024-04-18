@@ -3,7 +3,15 @@ function Help() {
   return (
     <div>
       <h2>Tuki</h2>
-      <p>lorem ipsum...</p>
+      <p>
+        Mikäli sinulla herää, jotain kysyttävää tai haluat kertoa<br></br>
+        parannusehdotuksesi, ole hyvä ja ota rohkeasti meihin yhteyttä!<br></br>
+        Pyrimme vastaamaan mahdollisimman nopeasti.
+      </p>
+      <p>
+        Tuki on tavoitettavissa seuraavanlaisesti: <br></br>
+        <b>Ma-pe klo. 10-15</b>
+      </p>
 
       <h2>Yhteystiedot</h2>
       <ol>

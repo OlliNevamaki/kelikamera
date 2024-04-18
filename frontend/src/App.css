@@ -23,7 +23,7 @@ h3 {
 .Left-align {
   text-align: left;
   margin-left: 150px;
-  margin-bottom: 500px;
+  margin-bottom: 5px;
 }
 
 .Banner-image {
@@ -44,7 +44,7 @@ nav {
 }
 
 .logo img {
-  width: 20%;
+  width: 15%;
   height: auto;
 }
 
@@ -74,6 +74,7 @@ footer {
   right: 0;
   width: 100%;
   display: block;
+  margin-top: 500px;
 }
 
 /*
