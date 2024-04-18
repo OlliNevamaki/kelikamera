@@ -103,7 +103,7 @@ function Maps() {
                 type="text"
                 placeholder="Lähtöpaikka"
                 ref={origRef}
-                className="departure-button"
+                className="departure-holder"
               ></input>
             </Autocomplete>
             <Autocomplete>
@@ -111,7 +111,7 @@ function Maps() {
                 type="text"
                 placeholder="Määränpää"
                 ref={destinationRef}
-                className="destination-button"
+                className="destination-holder"
               ></input>
             </Autocomplete>
             <button
