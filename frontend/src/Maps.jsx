@@ -7,6 +7,7 @@ import {
   Marker,
   Autocomplete,
   DirectionsRenderer,
+  InfoWindow,
 } from "@react-google-maps/api";
 import { AdvancedMarker } from "@vis.gl/react-google-maps";
 const libraries = ["places"];
@@ -24,12 +25,18 @@ function Maps() {
   const [duration, setDuration] = useState("");
   const origRef = useRef(null);
   const destinationRef = useRef(null);
-
   const [cameraData, setCameraData] = useState([]);
+  const [cameraInfoWindow, setCameraInfoWindow] = useState(null);
+  const [clickedMarkerIndex, setClickedMarkerIndex] = useState(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   useEffect(() => {
     fetchCameraData();
   }, []);
+
+  const handleMarkerClick = (index) => {
+    setClickedMarkerIndex(index);
+  };
 
   async function fetchCameraData() {
     try {
@@ -130,15 +137,37 @@ function Maps() {
         </div>
         <GoogleMap
           zoom={7}
-          center={startPos}
+          center={
+            mapLoaded
+              ? clickedMarkerIndex !== null
+                ? {
+                    lat: cameraData[clickedMarkerIndex].lat,
+                    lng: cameraData[clickedMarkerIndex].lng,
+                  }
+                : cameraInfoWindow
+                  ? {
+                      lat: cameraInfoWindow.lat,
+                      lng: cameraInfoWindow.lng,
+                    }
+                  : startPos
+              : startPos
+          }
           mapId={"39f7e81720cbd140"}
           mapContainerStyle={{ width: "100%", height: "100%" }}
           options={{
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
+            draggable: true,
           }}
-          onLoad={(map) => setMap(map)}
+          onLoad={(map) => {
+            setMap(map);
+            setMapLoaded(true);
+          }}
+          onClick={() => {
+            setClickedMarkerIndex(null);
+            setCameraInfoWindow(null);
+          }}
         >
           {directionsResponse && (
             <DirectionsRenderer directions={directionsResponse} />
@@ -149,6 +178,9 @@ function Maps() {
                 <Marker
                   key={index}
                   position={{ lat: camera.lat, lng: camera.lng }}
+                  onClick={() => {
+                    handleMarkerClick(index);
+                  }}
                 ></Marker>
               );
             } else {
@@ -156,6 +188,19 @@ function Maps() {
               return null;
             }
           })}
+          {clickedMarkerIndex !== null && (
+            <InfoWindow
+              position={{
+                lat: cameraData[clickedMarkerIndex].lat,
+                lng: cameraData[clickedMarkerIndex].lng,
+              }}
+              onCloseClick={() => setClickedMarkerIndex(null)}
+            >
+              <div>
+                <p>Kelikameran tiedot</p>
+              </div>
+            </InfoWindow>
+          )}
         </GoogleMap>
         <Footer />
       </div>
