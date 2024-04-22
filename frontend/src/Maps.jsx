@@ -29,6 +29,7 @@ function Maps() {
   const [cameraInfoWindow, setCameraInfoWindow] = useState(null);
   const [clickedMarkerIndex, setClickedMarkerIndex] = useState(null);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [showMarkers, setShowMarkers] = useState(false);
 
   useEffect(() => {
     fetchCameraData();
@@ -87,12 +88,14 @@ function Maps() {
     setDirectionsResponse(results);
     setDistance(results.routes[0].legs[0].distance.text);
     setDuration(results.routes[0].legs[0].duration.text);
+    setShowMarkers(true);
   }
 
   function clearRoute() {
     setDirectionsResponse(null);
     setDistance("");
     setDuration("");
+    setShowMarkers(false);
   }
 
   return (
@@ -131,8 +134,9 @@ function Maps() {
             <button onClick={clearRoute} className="clearroute-button">
               Poista reitti
             </button>
-            <p style={{ color: "black" }}>Matka: {distance} </p>
-            <p style={{ color: "black" }}>Kesto: {duration} </p>
+            <p style={{ color: "black" }}>
+              Matka: {distance} &nbsp;&nbsp;&nbsp; Kesto: {duration}
+            </p>
           </div>
         </div>
         <GoogleMap
@@ -153,7 +157,11 @@ function Maps() {
               : startPos
           }
           mapId={"39f7e81720cbd140"}
-          mapContainerStyle={{ width: "100%", height: "100%" }}
+          mapContainerStyle={{
+            width: "75%",
+            height: "75%",
+            margin: "0 auto",
+          }}
           options={{
             streetViewControl: false,
             mapTypeControl: false,
@@ -172,22 +180,39 @@ function Maps() {
           {directionsResponse && (
             <DirectionsRenderer directions={directionsResponse} />
           )}
-          {cameraData.map((camera, index) => {
-            if (camera && camera.lat && camera.lng) {
-              return (
-                <Marker
-                  key={index}
-                  position={{ lat: camera.lat, lng: camera.lng }}
-                  onClick={() => {
-                    handleMarkerClick(index);
-                  }}
-                ></Marker>
-              );
-            } else {
-              console.error("Invalid camera data:", camera);
+          {showMarkers &&
+            cameraData.map((camera, index) => {
+              if (camera && camera.lat && camera.lng) {
+                if (directionsResponse) {
+                  const routePath = directionsResponse.routes[0].overview_path;
+                  const distanceTreshold = 150;
+                  const cameraPosition = new google.maps.LatLng(
+                    camera.lat,
+                    camera.lng
+                  );
+                  const nearRoute = routePath.some((routePoint) => {
+                    const distance =
+                      google.maps.geometry.spherical.computeDistanceBetween(
+                        routePoint,
+                        cameraPosition
+                      );
+                    return distance <= distanceTreshold;
+                  });
+                  if (nearRoute) {
+                    return (
+                      <Marker
+                        key={index}
+                        position={{ lat: camera.lat, lng: camera.lng }}
+                        onClick={() => {
+                          handleMarkerClick(index);
+                        }}
+                      ></Marker>
+                    );
+                  }
+                }
+              }
               return null;
-            }
-          })}
+            })}
           {clickedMarkerIndex !== null && (
             <InfoWindow
               position={{
