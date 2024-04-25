@@ -3,8 +3,10 @@ function Instructions() {
   return (
     <div>
       <h2>Käyttöohjeet</h2>
-      <p>Tässä lyhyet käyttöohjeet sovelluksen käyttämiseen.</p>
-      <ol>
+      <p className="instructions-header">
+        Tässä lyhyet käyttöohjeet sovelluksen käyttämiseen.
+      </p>
+      <ol className="instructions-list">
         <li>
           <b>1.</b> Mene "Suunnittele reittisi" välilehdelle.
         </li>

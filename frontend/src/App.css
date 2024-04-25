@@ -147,6 +147,63 @@ footer {
   background-color: rgb(197, 54, 6);
 }
 
+.instructions-list {
+  text-align: left;
+  margin-left: 150px;
+}
+
+.instructions-header {
+  text-align: left;
+  margin-left: 150px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    body {
+    overflow-x: hidden; /* Estä vaakasuuntainen vieritys mobiililaitteilla */
+  }
+
+  .App-header {
+    padding: 10px;
+  }
+
+  .Banner-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .Left-align {
+    font-size: 12px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h3 {
+    text-align: center; /* Keskitä otsikko mobiililaitteille */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .departure-holder {
+    font-size: 15px;
+  }
+
+  .destination-holder {
+    font-size: 15px;
+  }
+
+  .instructions-list {
+    text-align: center;
+    margin-left: auto;
+  }
+
+  .instructions-header {
+    text-align: center;
+    margin-left: auto;
+  }
+}
+
 /*
 
 nav ul li:hover {
