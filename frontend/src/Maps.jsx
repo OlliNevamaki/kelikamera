@@ -30,13 +30,32 @@ function Maps() {
   const [clickedMarkerIndex, setClickedMarkerIndex] = useState(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [showMarkers, setShowMarkers] = useState(false);
+  const [cameraImg, setCameraImg] = useState({});
 
   useEffect(() => {
     fetchCameraData();
   }, []);
 
-  const handleMarkerClick = (index) => {
+  const handleMarkerClick = async (index) => {
     setClickedMarkerIndex(index);
+    try {
+      const camera = cameraData[index];
+      if (!camera || !camera.id) {
+        throw new Error("Invalid camera data or missing ID");
+      }
+      const cameraId = camera.id;
+      const imageUrl = `https://tie.digitraffic.fi/api/weathercam/v1/stations/${cameraId}`;
+      const imageResponse = await fetch(imageUrl);
+      if (!imageResponse.ok) {
+        throw new Error("Error fetching the image data");
+      }
+      const imageData = await imageResponse.json();
+      const cameraImage = imageData.properties.presets[0].imageUrl;
+      setCameraImg(cameraImage);
+    } catch (error) {
+      console.error("Error while fetching image", error);
+      setCameraImg(null);
+    }
   };
 
   async function fetchCameraData() {
@@ -48,7 +67,6 @@ function Maps() {
         throw new Error("Failed to fetch camera data");
       }
       const data = await response.json();
-      console.log("API response:", data);
       if (Array.isArray(data.features)) {
         const cameraCoordinates = data.features
           .map((feature) => {
@@ -56,9 +74,10 @@ function Maps() {
               feature.geometry &&
               Array.isArray(feature.geometry.coordinates)
             ) {
+              const id = feature.id;
               const lng = feature.geometry.coordinates[0];
               const lat = feature.geometry.coordinates[1];
-              return { lat, lng };
+              return { id, lat, lng };
             }
             return null;
           })
@@ -223,6 +242,13 @@ function Maps() {
             >
               <div>
                 <p>Kelikameran tiedot</p>
+                {cameraImg && (
+                  <img
+                    src={cameraImg}
+                    alt="Camera"
+                    style={{ maxWidth: "600px" }}
+                  ></img>
+                )}
               </div>
             </InfoWindow>
           )}
