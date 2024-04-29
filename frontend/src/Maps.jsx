@@ -31,6 +31,7 @@ function Maps() {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [showMarkers, setShowMarkers] = useState(false);
   const [cameraImg, setCameraImg] = useState({});
+  const [temperature, setTemperature] = useState([]);
 
   useEffect(() => {
     fetchCameraData();
@@ -51,6 +52,18 @@ function Maps() {
       }
       const imageData = await imageResponse.json();
       const cameraImage = imageData.properties.presets[0].imageUrl;
+      const weatherStationId = imageData.properties.nearestWeatherStationId;
+      const weatherUrl = `https://tie.digitraffic.fi/api/weather/v1/stations/${weatherStationId}/data`;
+      const weatherResponse = await fetch(weatherUrl);
+      if (!weatherResponse.ok) {
+        throw new Error("Error fetching weather data");
+      }
+      const weatherData = await weatherResponse.json();
+      const filterTmp = weatherData.sensorValues.filter(
+        (sensor) => sensor.id === 1
+      );
+      const temperature = filterTmp.length > 0 ? filterTmp[0].value : null;
+      setTemperature(temperature);
       setCameraImg(cameraImage);
     } catch (error) {
       console.error("Error while fetching image", error);
@@ -249,6 +262,7 @@ function Maps() {
                     style={{ maxWidth: "600px" }}
                   ></img>
                 )}
+                {temperature && <p>Lämpötila:&nbsp;{temperature} °C</p>}
               </div>
             </InfoWindow>
           )}
