@@ -32,6 +32,10 @@ function Maps() {
   const [showMarkers, setShowMarkers] = useState(false);
   const [cameraImg, setCameraImg] = useState({});
   const [temperature, setTemperature] = useState([]);
+  const [wind, setWind] = useState([]);
+  const [humidity, setHumidity] = useState([]);
+  const [roadTmp, setRoadTmp] = useState([]);
+  const [rainType, setRainType] = useState([]);
 
   useEffect(() => {
     fetchCameraData();
@@ -63,6 +67,28 @@ function Maps() {
         (sensor) => sensor.id === 1
       );
       const temperature = filterTmp.length > 0 ? filterTmp[0].value : null;
+      const filterWind = weatherData.sensorValues.find(
+        (sensor) => sensor.name === "KESKITUULI"
+      );
+      const wind = filterWind ? filterWind.value : null;
+      const filterHumidity = weatherData.sensorValues.find(
+        (sensor) => sensor.name === "ILMAN_KOSTEUS"
+      );
+      const humidity = filterHumidity ? filterHumidity.value : null;
+      const filterRoadTmp = weatherData.sensorValues.find(
+        (sensor) => sensor.name === "TIE_1"
+      );
+      const roadTmp = filterRoadTmp ? filterRoadTmp.value : null;
+      const filterRainType = weatherData.sensorValues.find(
+        (sensor) => sensor.name === "SATEEN_OLOMUOTO_PWDXX"
+      );
+      const rainType = filterRainType
+        ? filterRainType.sensorValueDescriptionFi
+        : null;
+      setRainType(rainType);
+      setRoadTmp(roadTmp);
+      setHumidity(humidity);
+      setWind(wind);
       setTemperature(temperature);
       setCameraImg(cameraImage);
     } catch (error) {
@@ -263,6 +289,10 @@ function Maps() {
                   ></img>
                 )}
                 {temperature && <p>Lämpötila:&nbsp;{temperature} °C</p>}
+                {roadTmp && <p>Tien lämpötila:&nbsp;{roadTmp} °C</p>}
+                {wind && <p>Keskituuli:&nbsp;{wind} m/s</p>}
+                {humidity && <p>Ilmankosteus:&nbsp;{humidity} %</p>}
+                {rainType && <p>Sateen tyyppi:&nbsp;{rainType}</p>}
               </div>
             </InfoWindow>
           )}
