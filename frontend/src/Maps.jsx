@@ -10,6 +10,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { AdvancedMarker } from "@vis.gl/react-google-maps";
+import cameraMarker from "./camera.png";
 const libraries = ["places"];
 
 function Maps() {
@@ -264,6 +265,7 @@ function Maps() {
                         onClick={() => {
                           handleMarkerClick(index);
                         }}
+                        options={{ icon: cameraMarker }}
                       ></Marker>
                     );
                   }
