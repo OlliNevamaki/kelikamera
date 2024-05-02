@@ -37,6 +37,7 @@ function Maps() {
   const [humidity, setHumidity] = useState([]);
   const [roadTmp, setRoadTmp] = useState([]);
   const [rainType, setRainType] = useState([]);
+  const [blackIce, setBlackIce] = useState([]);
 
   useEffect(() => {
     fetchCameraData();
@@ -86,6 +87,11 @@ function Maps() {
       const rainType = filterRainType
         ? filterRainType.sensorValueDescriptionFi
         : null;
+      const filterBlackIce = weatherData.sensorValues.find(
+        (sensor) => sensor.name === "JÄÄN_MÄÄRÄ1"
+      );
+      const blackIce = filterBlackIce ? filterBlackIce.value : null;
+      setBlackIce(blackIce);
       setRainType(rainType);
       setRoadTmp(roadTmp);
       setHumidity(humidity);
@@ -155,6 +161,7 @@ function Maps() {
     setDistance("");
     setDuration("");
     setShowMarkers(false);
+    setBlackIce(null);
   }
 
   return (
@@ -196,6 +203,11 @@ function Maps() {
             <p style={{ color: "black" }}>
               Matka: {distance} &nbsp;&nbsp;&nbsp; Kesto: {duration}
             </p>
+            {blackIce > 0 && (
+              <div className="alert_ice">
+                <p>⚠️Varoitus! Alueella saattaa olla mustaa jäätä!</p>
+              </div>
+            )}
           </div>
         </div>
         <GoogleMap
