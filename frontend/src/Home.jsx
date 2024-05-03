@@ -5,6 +5,11 @@ function Home() {
       <header className="App-header">
         <img src="./src/banneri-kuva-2.png" className="Banner-image" />
         <h3>Ajankohtaiset päivitykset</h3>
+         <p className="Left-align">
+          <b>2.5.2024</b>
+          <br></br>
+          Sovellukseen on lisätty uusi ominaisuus. Nyt käyttäjälle ilmoitetaan mikäli reitin varrella esiintyy mustaa jäätä.
+        </p>
         <p className="Left-align">
           <b>18.4.2024</b>
           <br></br>
