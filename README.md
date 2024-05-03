@@ -2,13 +2,13 @@
 
 ## Projektin nimi ja idea
 
-Kyseessä on Kelikamera-projekti, jossa tavoitteena on luoda sovellus, jolla autoilijat voivat suunnitella reittinsä saaden samalla kelikameroiden tietoja reitin varrelta. Projektissa työskentelee kolme ohjelmistotuotannon opiskelijaa.
+Kyseessä on Kelikamera-projekti, jossa tavoitteena on luoda sovellus, jolla autoilijat voivat suunnitella reittinsä saaden samalla kelikameroiden tietoja reitin varrelta. Käyttäjällä on myös mahdollista saada tietoa jos tiellä esiintyy mustaa jäätä. Projektissa työskentelee kolme ohjelmistotuotannon opiskelijaa.
 Asiakkaana on TAMK.
 
 ## Käytetty seuraavia ohjelmointi kieliä
 
-- Frontend: React, css, html
-- Backend:
+ React, CSS, HTML, JavaScript
+
 
 ## Ominaisuudet
 
