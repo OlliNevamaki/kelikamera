@@ -12,7 +12,8 @@ Asiakkaana on TAMK.
 
 ## Ominaisuudet
 
-Sovelluksessa näkyy esim. Nopein reitti, keskeisimmät kelikamerat ja niiden tiedot, matkan pituus (ajallisesti), kilometrimäärä, reitti visuaalisesti, ja sääolosuhteet. Sovellus on käytettävyydeltään yksinkertainen, sen sisältö on helposti saavutettavissa ja pyrkii visuaalisesti näyttämään käyttäjälle reitin sekä kelikameroiden oleellisen datan.
+Sovelluksessa näkyy esim. Nopein reitti, keskeisimmät kelikamerat ja niiden tiedot, matkan pituus (ajallisesti), kilometrimäärä, reitti visuaalisesti, ja sääolosuhteet. Käyttäjälle näkyy myös mikäli reitin varrella esiintyy mustaa jäätä. 
+Sovellus on käytettävyydeltään yksinkertainen, sen sisältö on helposti saavutettavissa ja pyrkii visuaalisesti näyttämään käyttäjälle reitin sekä kelikameroiden oleellisen datan.
 
 ## Näyttökuvia sovelluksesta
 
