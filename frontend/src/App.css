@@ -170,7 +170,7 @@ footer {
 
 @media only screen and (max-width: 600px) {
   body {
-    overflow-x: hidden; /* Estä vaakasuuntainen vieritys mobiililaitteilla */
+    overflow-x: hidden;
   }
 
   .App-header {
@@ -190,7 +190,7 @@ footer {
   }
 
   h3 {
-    text-align: center; /* Keskitä otsikko mobiililaitteille */
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
   }
@@ -214,11 +214,3 @@ footer {
   }
 }
 
-/*
-
-nav ul li:hover {
-  border-radius: 5px;
-  background-color: rgba(60, 60, 60, 0.2);
-}
-
-*/
