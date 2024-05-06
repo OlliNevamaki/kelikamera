@@ -38,6 +38,7 @@ function Maps() {
   const [roadTmp, setRoadTmp] = useState([]);
   const [rainType, setRainType] = useState([]);
   const [blackIce, setBlackIce] = useState([]);
+  const [currentMapCenter, setCurrentMapCenter] = useState(startPos);
 
   useEffect(() => {
     fetchCameraData();
@@ -224,7 +225,7 @@ function Maps() {
                       lat: cameraInfoWindow.lat,
                       lng: cameraInfoWindow.lng,
                     }
-                  : startPos
+                  : currentMapCenter
               : startPos
           }
           mapId={"39f7e81720cbd140"}
@@ -242,6 +243,7 @@ function Maps() {
           onLoad={(map) => {
             setMap(map);
             setMapLoaded(true);
+            setCurrentMapCenter(startPos);
           }}
           onClick={() => {
             setClickedMarkerIndex(null);
@@ -291,7 +293,17 @@ function Maps() {
                 lat: cameraData[clickedMarkerIndex].lat,
                 lng: cameraData[clickedMarkerIndex].lng,
               }}
-              onCloseClick={() => setClickedMarkerIndex(null)}
+              onCloseClick={(event) => {
+                setCurrentMapCenter({
+                  lat: cameraData[clickedMarkerIndex].lat,
+                  lng: cameraData[clickedMarkerIndex].lng,
+                });
+                if (event) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                setClickedMarkerIndex(null);
+              }}
             >
               <div>
                 <p>Kelikameran tiedot</p>
