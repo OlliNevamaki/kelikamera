@@ -305,7 +305,7 @@ function Maps() {
                 setClickedMarkerIndex(null);
               }}
             >
-              <div>
+              <div className="camera-info">
                 <p>Kelikameran tiedot</p>
                 {cameraImg && (
                   <img
@@ -314,11 +314,21 @@ function Maps() {
                     style={{ maxWidth: "600px" }}
                   ></img>
                 )}
-                {temperature && <p>Lämpötila:&nbsp;{temperature} °C</p>}
-                {roadTmp && <p>Tien lämpötila:&nbsp;{roadTmp} °C</p>}
-                {wind && <p>Keskituuli:&nbsp;{wind} m/s</p>}
-                {humidity && <p>Ilmankosteus:&nbsp;{humidity} %</p>}
-                {rainType && <p>Sateen tyyppi:&nbsp;{rainType}</p>}
+                {temperature && <p className="temperature">
+                  <i className="fas fa-thermometer-half"></i>
+                  Lämpötila:&nbsp;{temperature} °C</p>}
+                {roadTmp && <p className="road-temperature">
+                  <i className="fas fa-road"></i>
+                  Tien lämpötila:&nbsp;{roadTmp} °C</p>}
+                {wind && <p className="wind">
+                  <i className="fas fa-wind"></i>
+                  Keskituuli:&nbsp;{wind} m/s</p>}
+                {humidity && <p className="humidity">
+                  <i className="fas fa-tint"></i>
+                  Ilmankosteus:&nbsp;{humidity} %</p>}
+                {rainType && <p className="rain-type">
+                  <i className="fas fa-cloud"></i>
+                  Sateen tyyppi:&nbsp;{rainType}</p>}
               </div>
             </InfoWindow>
           )}

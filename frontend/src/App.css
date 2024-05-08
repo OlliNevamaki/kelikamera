@@ -214,3 +214,44 @@ footer {
   }
 }
 
+.temperature {
+  font-weight: bold;
+}
+
+.temperature i {
+  margin-right: 5px;
+}
+
+
+.road-temperature {
+  font-weight: bold;
+}
+
+.road-temperature i {
+  margin-right: 5px;
+}
+
+.wind {
+  font-weight: bold;
+}
+
+.wind i {
+  margin-right: 5px;
+}
+
+.humidity {
+  font-weight: bold;
+}
+
+.humidity i {
+  margin-right: 5px;
+}
+
+.rain-type {
+  font-weight: bold;
+}
+
+.rain-type i {
+    margin-right: 5px;
+}
+
