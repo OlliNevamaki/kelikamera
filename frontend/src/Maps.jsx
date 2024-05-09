@@ -11,16 +11,19 @@ import {
 } from "@react-google-maps/api";
 import { AdvancedMarker } from "@vis.gl/react-google-maps";
 import cameraMarker from "./camera.png";
+import { useLocation } from "react-router-dom";
 const libraries = ["places"];
 
 function Maps() {
+  const location = useLocation();
+  const { origin, destination } = location.state || {};
   const startPos = { lat: 62.24147, lng: 25.72088 };
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyCDnJR-bIPumZ0-YnP0atN5C8J-qxiuHPI",
     libraries: libraries,
   });
 
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const [map, setMap] = useState({});
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
@@ -39,10 +42,23 @@ function Maps() {
   const [rainType, setRainType] = useState([]);
   const [blackIce, setBlackIce] = useState([]);
   const [currentMapCenter, setCurrentMapCenter] = useState(startPos);
+  const [savedRoutes, setSavedRoutes] = useState([]);
 
   useEffect(() => {
     fetchCameraData();
   }, []);
+
+  const saveRoutes = () => {
+    const routeData = {
+      origin: origRef.current.value,
+      destination: destinationRef.current.value,
+    };
+    const existingRoutes =
+      JSON.parse(localStorage.getItem("savedRoutes")) || [];
+    const updateRoutes = [...existingRoutes, routeData];
+    setSavedRoutes(updateRoutes);
+    localStorage.setItem("savedRoutes", JSON.stringify(updateRoutes));
+  };
 
   const handleMarkerClick = async (index) => {
     setClickedMarkerIndex(index);
@@ -201,6 +217,9 @@ function Maps() {
             <button onClick={clearRoute} className="clearroute-button">
               Poista reitti
             </button>
+            <button onClick={saveRoutes} className="saveroute-button">
+              Tallenna reitti
+            </button>
             <p style={{ color: "black" }}>
               Matka: {distance} &nbsp;&nbsp;&nbsp; Kesto: {duration}
             </p>
@@ -244,6 +263,16 @@ function Maps() {
             setMap(map);
             setMapLoaded(true);
             setCurrentMapCenter(startPos);
+            if (
+              origRef.current !== null &&
+              destinationRef.current !== null &&
+              origin &&
+              destination
+            ) {
+              origRef.current.value = origin;
+              destinationRef.current.value = destination;
+              calculateRoute();
+            }
           }}
           onClick={() => {
             setClickedMarkerIndex(null);
@@ -314,21 +343,36 @@ function Maps() {
                     style={{ maxWidth: "600px" }}
                   ></img>
                 )}
-                {temperature && <p className="temperature">
-                  <i className="fas fa-thermometer-half"></i>
-                  Lämpötila:&nbsp;{temperature} °C</p>}
-                {roadTmp && <p className="road-temperature">
-                  <i className="fas fa-road"></i>
-                  Tien lämpötila:&nbsp;{roadTmp} °C</p>}
-                {wind && <p className="wind">
-                  <i className="fas fa-wind"></i>
-                  Keskituuli:&nbsp;{wind} m/s</p>}
-                {humidity && <p className="humidity">
-                  <i className="fas fa-tint"></i>
-                  Ilmankosteus:&nbsp;{humidity} %</p>}
-                {rainType && <p className="rain-type">
-                  <i className="fas fa-cloud"></i>
-                  Sateen tyyppi:&nbsp;{rainType}</p>}
+                {temperature && (
+                  <p className="temperature">
+                    <i className="fas fa-thermometer-half"></i>
+                    Lämpötila:&nbsp;{temperature} °C
+                  </p>
+                )}
+                {roadTmp && (
+                  <p className="road-temperature">
+                    <i className="fas fa-road"></i>
+                    Tien lämpötila:&nbsp;{roadTmp} °C
+                  </p>
+                )}
+                {wind && (
+                  <p className="wind">
+                    <i className="fas fa-wind"></i>
+                    Keskituuli:&nbsp;{wind} m/s
+                  </p>
+                )}
+                {humidity && (
+                  <p className="humidity">
+                    <i className="fas fa-tint"></i>
+                    Ilmankosteus:&nbsp;{humidity} %
+                  </p>
+                )}
+                {rainType && (
+                  <p className="rain-type">
+                    <i className="fas fa-cloud"></i>
+                    Sateen tyyppi:&nbsp;{rainType}
+                  </p>
+                )}
               </div>
             </InfoWindow>
           )}

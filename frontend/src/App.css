@@ -147,6 +147,30 @@ footer {
   background-color: rgb(197, 54, 6);
 }
 
+.saveroute-button {
+  width: 135px;
+  height: 35px;
+  background-color: rgb(104, 199, 26);
+  border-radius: 6px;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 3px 10px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  margin: 6px;
+}
+
+.saveroute-button:hover {
+  background-color: rgb(89, 168, 23);
+}
+
 .instructions-list {
   text-align: left;
   margin-left: 150px;
@@ -222,7 +246,6 @@ footer {
   margin-right: 5px;
 }
 
-
 .road-temperature {
   font-weight: bold;
 }
@@ -252,6 +275,5 @@ footer {
 }
 
 .rain-type i {
-    margin-right: 5px;
+  margin-right: 5px;
 }
-

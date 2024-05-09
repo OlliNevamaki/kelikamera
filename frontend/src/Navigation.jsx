@@ -12,7 +12,7 @@ const Navigation = () => {
           <Link to="/">Etusivu</Link>
         </li>
         <li>
-          <Link to="/suunnittele-reitti">Suunnittele reittisi</Link>
+          <Link to="/tallennetut-reitit">Tallennetut reitit</Link>
         </li>
         <li>
           <Link to="/ohjeet">Käyttöohjeet</Link>
