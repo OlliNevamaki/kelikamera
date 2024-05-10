@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "./Logo.png";
-
+/**The navigation bar component for the app, the function provides a logo image and links for the page views */
 const Navigation = () => {
   return (
     <nav>

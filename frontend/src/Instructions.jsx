@@ -1,4 +1,5 @@
 import Footer from "./Footer";
+/** Instructions component features information about the usage of the app */
 function Instructions() {
   return (
     <div>

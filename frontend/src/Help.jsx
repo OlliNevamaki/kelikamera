@@ -1,4 +1,5 @@
 import Footer from "./Footer";
+/**Function for a component and a page view Help that displays information for the user to make contact to us */
 function Help() {
   return (
     <div>

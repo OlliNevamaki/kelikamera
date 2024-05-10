@@ -1,3 +1,4 @@
+/**Function for the Footer component that displays information on every page of the app */
 function Footer() {
   return (
     <footer>

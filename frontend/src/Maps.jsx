@@ -13,16 +13,23 @@ import { AdvancedMarker } from "@vis.gl/react-google-maps";
 import cameraMarker from "./camera.png";
 import { useLocation } from "react-router-dom";
 const libraries = ["places"];
-
+/**Maps function provides functions for the usage of Google maps based map view and consist mainly of features for searching a route,
+ * deleting the created route and on the created route showing markers that are used to display either route from place A to place B or the
+ * markers are used as clickable items and locators for weather cameras that all display an InfoWindow component that displays data from
+ * digitraffic weather sensors and camera pictures. The function also has a feature to save a route in localStorage so it can be displayed in
+ * mapped list provided by SavedRoutes.jsx
+ */
 function Maps() {
+  /** location and its state for using the predetermined route that is selected from savedRoutes.*/
   const location = useLocation();
   const { origin, destination } = location.state || {};
+  /**starting position when loading the map and its coordinates, and a loader for libraries that provide place information and the API key for Google Maps */
   const startPos = { lat: 62.24147, lng: 25.72088 };
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCDnJR-bIPumZ0-YnP0atN5C8J-qxiuHPI",
+    googleMapsApiKey: "AIzaSyCDnJR-bIPumZ0-YnP0atN5C8J-qxiuHPI", // if the app is not running as it should, make sure the Api key is changed to your own key or a key that is currently active.
     libraries: libraries,
   });
-
+  /**States for different data handled in the application and also refs for the origin and destination of the searchable route */
   const [map, setMap] = useState({});
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [distance, setDistance] = useState("");
@@ -43,11 +50,11 @@ function Maps() {
   const [blackIce, setBlackIce] = useState([]);
   const [currentMapCenter, setCurrentMapCenter] = useState(startPos);
   const [savedRoutes, setSavedRoutes] = useState([]);
-
+  /**useEffect for running the fetchCameraData() function */
   useEffect(() => {
     fetchCameraData();
   }, []);
-
+  /**function for a button used to save routes, saves origin and destination values and stores them in an array of savedRoutes that is stored in localStorage */
   const saveRoutes = () => {
     const routeData = {
       origin: origRef.current.value,
@@ -59,7 +66,10 @@ function Maps() {
     setSavedRoutes(updateRoutes);
     localStorage.setItem("savedRoutes", JSON.stringify(updateRoutes));
   };
-
+  /** Function to handle the features of the weather camera markers, handles markers by index and fetches an image corresponding to
+   * the cameras id, determines the nearest weather station for the camera location and fetches data from the weather station, then searches
+   * filtered data from the information provided by the weather sensors and uses state variables to display those values.
+   */
   const handleMarkerClick = async (index) => {
     setClickedMarkerIndex(index);
     try {
@@ -120,7 +130,7 @@ function Maps() {
       setCameraImg(null);
     }
   };
-
+  /**Fetching data for camera stations, used to fetch coordinates and id for cameras*/
   async function fetchCameraData() {
     try {
       const response = await fetch(
@@ -153,11 +163,13 @@ function Maps() {
       console.error("Error while fetching data", error);
     }
   }
-
+  /**If map is not loaded, returns null */
   if (!isLoaded) {
     return null;
   }
-
+  /**Calculates the route if both of the origin and destination values exist, uses the DirectionsService provided by Google,
+   * clears previous route so only one route can be viewed at a time, also sets distance and duration for the created route.
+   */
   async function calculateRoute() {
     if (!origRef.current || !destinationRef.current) return;
     const directionsService = new google.maps.DirectionsService();
@@ -172,7 +184,7 @@ function Maps() {
     setDuration(results.routes[0].legs[0].duration.text);
     setShowMarkers(true);
   }
-
+  /**Clears the created route by setting the directionsResponse null and also setting other values to their original state. */
   function clearRoute() {
     setDirectionsResponse(null);
     setDistance("");
@@ -191,6 +203,10 @@ function Maps() {
           style={{ background: "white", padding: "20px 20px 20px 20px" }}
         >
           <div>
+            {" "}
+            {/**Input fields for origin and destination that both use Autocomplete feature provided by Google to help setting the end points for a route, also the buttons for
+             * using calculateRoute, clearRoute and saveRoutes functions. Displays a warning for black ice when the api provides values over 0.0mm
+             */}
             <Autocomplete>
               <input
                 type="text"
@@ -230,6 +246,9 @@ function Maps() {
             )}
           </div>
         </div>
+        {/**GoogleMap component for displaying the map view, includes zooming, centering, style and control options and
+         * some handling for loading the map and if the inputs use data from savedRoutes or whether they are to be used for creating new route.
+         */}
         <GoogleMap
           zoom={7}
           center={
@@ -282,6 +301,10 @@ function Maps() {
           {directionsResponse && (
             <DirectionsRenderer directions={directionsResponse} />
           )}
+          {/**Showing the markers for weather cameras according to the route and using distanceTreshold to determine the area on which the existing camera locations
+           * are displayed on the map view. If the cameras are near the route it displays them with their own corresponding index value and position values, each marker
+           * has handling for onClick which calls a function for handling the click and displaying InfoWindow components that display data provided by their own APIs.
+           */}
           {showMarkers &&
             cameraData.map((camera, index) => {
               if (camera && camera.lat && camera.lng) {

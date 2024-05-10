@@ -4,7 +4,7 @@ import Maps from "./Maps";
 import Instructions from "./Instructions";
 import Help from "./Help";
 import SavedRoutes from "./SavedRoutes";
-
+/**This function includes the page routes that each one of them have their specific path that refers to a specific component */
 function PageRoutes() {
   return (
     <Routes>
