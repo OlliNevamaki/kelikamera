@@ -16,8 +16,8 @@ function Home() {
           <b>18.4.2024</b>
           <br></br>
           Sovellukseen on tullut merkittäviä päivityksiä. Nyt käyttäjämme
-          pääsevät valitsemaan<br></br> reitin varrelta kelikameroita joista saa
-          tarkempaa tietoa esimerkiksi tien kunnosta tai ruuhkista.<br></br>
+          pääsevät valitsemaan reitin varrelta kelikameroita, joista saa
+          tarkempaa tietoa esimerkiksi tien kunnosta tai ruuhkista.
           Tämä uusi päivitys auttaa käyttäjiämme suunnittelemaan reitiinsä
           paremmin!
         </p>

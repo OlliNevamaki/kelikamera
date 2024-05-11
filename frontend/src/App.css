@@ -23,6 +23,7 @@ h3 {
 .Left-align {
   text-align: left;
   margin-left: 150px;
+  margin-right: 250px;
   margin-bottom: 5px;
 }
 
@@ -197,30 +198,52 @@ footer {
     overflow-x: hidden;
   }
 
-  .App-header {
-    padding: 10px;
+  .logo {
+    size: 950px;
+    margin-top: 10px;
   }
 
-  .Banner-image {
-    max-width: 100%;
-    height: auto;
+   nav {
+    font-size: 13px;
+    text-align: center;
+    justify-content: center; /* Keskitys vaakasuunnassa */
+  }
+
+  nav ul {
+    display: flex; /* Käytetään flexboxia */
+    justify-content: center; /* Keskitys vaakasuunnassa */
+  }
+
+  nav ul li {
+    margin: 0 5px; /* Pienennetään tekstien välistä tilaa */
+  }
+
+  footer {
+    font-size: 13px;
   }
 
   .Left-align {
-    font-size: 12px;
+    font-size: 13px;
+    text-align: justify;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  h2, h3 {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  h3 {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .departure-holder {
     font-size: 15px;
+  }
+
+  ol, li{
+    text-align: center;
+    font-size: 14px;
+  }
+
+  p{
+    font-size: 13px;
+    text-align: center;
   }
 
   .destination-holder {
@@ -228,13 +251,16 @@ footer {
   }
 
   .instructions-list {
-    text-align: center;
+    text-align: justify;
     margin-left: auto;
+    margin-right: 10px;
+    font-size: 13px;
   }
 
   .instructions-header {
     text-align: center;
     margin-left: auto;
+    font-size: 13px;
   }
 }
 
