@@ -26,7 +26,7 @@ function Maps() {
   /**starting position when loading the map and its coordinates, and a loader for libraries that provide place information and the API key for Google Maps */
   const startPos = { lat: 62.24147, lng: 25.72088 };
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCDnJR-bIPumZ0-YnP0atN5C8J-qxiuHPI", // if the app is not running as it should, make sure the Api key is changed to your own key or a key that is currently active.
+    googleMapsApiKey: "", // if the app is not running as it should, make sure the Api key is changed to your own key or a key that is currently active.
     libraries: libraries,
   });
   /**States for different data handled in the application and also refs for the origin and destination of the searchable route */
